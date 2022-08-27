@@ -1,0 +1,19 @@
+{
+  "name": "FIND",
+  "version": "1.0.0",
+  "description": "Lorem ipsum",
+  "sidebar": {
+    "url": "http://localhost:8080/",
+    "allow": "",
+    "xClassName": "lighten",
+    "width": "300",
+    "minWidth": "250",
+    "maxWidth": "450"
+  },
+  "accessoryWebView": {
+    "url": "http://localhost:8080/robot",
+    "trusted": true,
+    "transparent": true
+  },
+  "performanceModel": "lowest"
+}

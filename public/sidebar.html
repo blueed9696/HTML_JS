@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Sidebar</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="#">
+	<script src="https://drive.doublerobotics.com/sidebar/v1/DRSidebarSDK.js"></script>
+	<script src="https://webrtchacks.github.io/adapter/adapter-latest.js"></script>
+    <script src="/driver_webrtc.js" type="module"></script>
+    <script src="/driver.js" type="module"></script>
+	<style>
+		html {
+			background: #292929;
+			height: 100%;
+		}
+		body {
+			color: white;
+			font-family: Sans-serif;
+		}
+		h1 {
+			background: #000000;
+			border-bottom: 1px solid #ffffff3b;
+			font-size: 12px;
+			font-weight: bold;
+			left: 0px;
+			margin: 0px 0px 10px 0px;
+			padding: 7px 10px;
+			position: absolute;
+			right: 0px;
+			top: 0px;
+		}
+		#content {
+			margin-top: 40px;
+		}
+		input[type=button] {
+			padding: 5px 10px;
+		}		
+	</style>
+</head>
+<body>
+	<h1>D3</h1>
+	<div class="streams">
+        <video id="remoteVideo" autoplay muted style="width: 480px;"></video>
+    </div>
+
+	<div id="tasks">
+		<input type="button" value="Send Hello" onclick="DRSidebarSDK.sendMessage({ text: 'Hello from sidebar' })">
+		<input type="button" value="Run" onclick="window.location='localhost:8080';">
+		<input type="button" value="Call" onclick="startCall()">
+		<input type="button" value="Assembly Table" onclick="">
+		<h3>From D3:</h3>
+		<div id="logs"></div>
+		<div id="log"></div>
+	</div>
+
+	<script>
+		function q(q) { return document.querySelector(q); }
+
+		var log = q("#log");
+
+		DRSidebarSDK.onmessage = (message) => {
+			log.innerHTML += "<p>" + message.text + "</p>";
+		};
+	</script>
+	<textarea id="iceConfig" rows="11" style="width: 500px;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">{
+		"iceTransportPolicy": "all",
+		"iceServers": [
+		  { "urls": [ "stun:rtc-oregon.doublerobotics.com:443" ] },
+		  {
+			"urls": [ "turns:rtc-oregon.doublerobotics.com:443" ],
+			"username": "open",
+			"credential": "open"
+		  }
+		]
+	  }</textarea>
+</body>
+</html>
