@@ -10,7 +10,7 @@ app.get("/", (request, response) => {
   response.sendFile(__dirname + "/public/driver.html");
 });
 app.get("/robot", (request, response) => {
-  response.sendFile(__dirname + "/public/robot.html");
+  response.sendFile(__dirname + "/public/d3.html");
 });
 app.get("/sidebar", (request, response) => {
   response.sendFile(__dirname + "/public/sidebar.html");
